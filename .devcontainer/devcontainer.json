@@ -1,0 +1,28 @@
+{
+	"name": "Bun",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick a Bun version.
+		"args": { 
+			"VARIANT": "latest"
+		}
+	},
+    "runArgs": ["--hostname", "dev"],
+
+	"customizations": {
+		"vscode": {
+            "extensions": [
+				"dbaeumer.vscode-eslint"
+			]
+		}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "bun install",
+
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "bun"
+}
