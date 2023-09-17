@@ -16,21 +16,35 @@ Before you begin, make sure you have the following tools installed on your syste
 
 ## Getting Started
 
-Clone this repository to your local machine:
+To quickly set up your Bun development environment, follow these simple steps:
 
-```bash
-git clone https://github.com/nhaef/devcontainer-bun.git
+1. Open your project folder in Visual Studio Code.
+2. In your project's root directory, create a `.devcontainer` folder if it doesn't already exist.
+3. Inside the `.devcontainer` folder, create a `devcontainer.json` file.
+4. Copy and paste the following configuration into your `devcontainer.json`:
+
+```json
+{
+    "name": "Bun",
+    "image": "ghcr.io/nhaef/devcontainer-bun:latest",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint"
+            ]
+        }
+    }
+}
 ```
 
-Open the repository in Visual Studio Code:
-
-```bash
-cd devcontainer-bun
-code .
-```
-
+Once you have saved the `devcontainer.json` file,
 Visual Studio Code should prompt you to reopen the project in a Dev Container.
 Accept the prompt to set up the development environment inside a Docker container.
+If you don't see the prompt,
+you can access the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette),
+type `Dev Containers: Reopen in Container`
+and then press Enter.
+
 Once the Dev Container is built and started, you'll have a fully configured environment for Bun development.
 
 ## Additional Information
