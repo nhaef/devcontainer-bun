@@ -7,6 +7,10 @@ on:
         description: 'Bun Version'
         required: true
         type: string
+      setLatest:
+        description: 'Set "latest" tag'
+        required: true
+        type: boolean
 
 env:
   REGISTRY: ghcr.io
@@ -27,6 +31,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          flavor: |
+            latest=false
           tags: |
             type=semver,pattern=v{{major}}.{{minor}}.{{patch}},value=v${{ inputs.bunVersion }}
             type=semver,pattern=v{{major}}.{{minor}},value=v${{ inputs.bunVersion }}
@@ -34,6 +40,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}.{{patch}},value=v${{ inputs.bunVersion }}
             type=semver,pattern={{major}}.{{minor}},value=v${{ inputs.bunVersion }}
             type=semver,pattern={{major}},value=v${{ inputs.bunVersion }}
+            type=raw,value=latest,enable=${{ inputs.setLatest }}
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3
